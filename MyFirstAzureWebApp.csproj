@@ -4,6 +4,13 @@
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationInsightsResourceId>/subscriptions/4f92073e-6c25-42d4-bbf5-cbafb3e3c24b/resourceGroups/net-rg/providers/microsoft.insights/components/webapp-github</ApplicationInsightsResourceId>
+    <UserSecretsId>3105687f-80bb-411a-9acf-e58a85977794</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Azure.Identity" Version="1.13.2" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.23.0" />
+  </ItemGroup>
 
 </Project>
