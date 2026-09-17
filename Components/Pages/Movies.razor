@@ -1,0 +1,24 @@
+﻿@page "/movies"
+@using MyFirstAzureWebApp.Models
+@using Microsoft.AspNetCore.Components.QuickGrid
+
+<h3>Movies</h3>
+
+<QuickGrid Items="@movies" Class="table table-striped">
+    <PropertyColumn Title="Id" Property="@(movie => movie.id)" />
+    <PropertyColumn Title="Title" Property="@(movie => movie.mTitle)" />
+    <PropertyColumn Title="Director" Property="@(movie => movie.mDirector)" />
+    <PropertyColumn Title="Release Year" Property="@(movie => movie.mReleaseYear)" />
+</QuickGrid>
+
+@code {
+    private readonly MOVIESContext db = new MOVIESContext();
+
+    private IQueryable<Movie> movies;
+
+    protected override void OnInitialized()
+    {
+        var aa = db.Movie.ToList().Take(10);
+        movies = db.Movie.AsQueryable().Take(50);
+    }
+}

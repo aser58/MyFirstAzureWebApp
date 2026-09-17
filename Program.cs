@@ -1,9 +1,11 @@
 ﻿using MyFirstAzureWebApp.Components;
 using Azure.Identity;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddApplicationInsightsTelemetry();
+builder.Services.AddQuickGridEntityFrameworkAdapter();
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
@@ -12,6 +14,9 @@ builder.Services.AddApplicationInsightsTelemetry(new Microsoft.ApplicationInsigh
 {
     ConnectionString = builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"]
 });
+
+builder.Services.AddDbContext<MyFirstAzureWebApp.Models.MOVIESContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("MOVIESContext")));
 
 var app = builder.Build();
 
